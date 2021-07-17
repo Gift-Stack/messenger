@@ -90,7 +90,7 @@ const Login = props => {
                             justifyContent='center'
                             alignItems='center'
                         >
-                            <Box position='absolute' top={160}>
+                            <Box position='absolute' top={'calc(50vh - 20%)'}>
                                 <img src={Bubble} alt='' />
                             </Box>
                             <Typography
