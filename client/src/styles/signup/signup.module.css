@@ -31,11 +31,14 @@
     object-position: 0% 0%;
 }
 .button {
+    width: 170px !important ;
+    padding: 15px 30px !important;
     color: #3a8dff !important;
     background: #fff !important;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .authBtn {
+    padding: 15px 30px !important;
     color: #fff !important;
     background: #3a8dff !important;
     width: 30%;
@@ -48,4 +51,12 @@
 }
 .input_firstchild {
     margin-top: 2px !important;
+}
+.input:focus {
+}
+.forgotPassword {
+    color: #3a8dff !important;
+}
+.forgotPassword:focus {
+    color: #3a8dff !important;
 }

@@ -8,6 +8,7 @@ import {
     Button,
     FormControl,
     TextField,
+    InputAdornment,
     FormHelperText,
     Typography,
 } from '@material-ui/core';
@@ -17,6 +18,7 @@ import Bubble from './assets/bubble.svg';
 import styles from './styles/signup/signup.module.css';
 
 const Login = props => {
+    const [focus, setFocus] = React.useState(false);
     const history = useHistory();
     const { user, login } = props;
 
@@ -32,6 +34,13 @@ const Login = props => {
         return <Redirect to='/home' />;
     }
 
+    const Focus = e => {
+        setFocus(true);
+    };
+    const FocusOut = e => {
+        setFocus(false);
+    };
+
     return (
         <Box className={styles.root}>
             <Paper className={styles.paper}>
@@ -44,7 +53,7 @@ const Login = props => {
                             justifyContent='center'
                             alignItems='center'
                         >
-                            <Box position='absolute' top={160}>
+                            <Box position='absolute' top={'calc(50vh - 20%)'}>
                                 <img src={Bubble} alt='' />
                             </Box>
                             <Typography
@@ -85,7 +94,7 @@ const Login = props => {
                                             color: '#aaa',
                                         }}
                                     >
-                                        Do you have an account?
+                                        Don't have an account?
                                     </p>
                                     <Button
                                         variant='contained'
@@ -94,6 +103,10 @@ const Login = props => {
                                         onClick={() =>
                                             history.push('/register')
                                         }
+                                        style={{
+                                            paddingTop: 15,
+                                            paddingBottom: 15,
+                                        }}
                                     >
                                         Create account
                                     </Button>
@@ -134,8 +147,26 @@ const Login = props => {
                                                 type='password'
                                                 inputProps={{ minLength: 6 }}
                                                 name='password'
-                                                // required
                                                 className={styles.input}
+                                                onFocus={Focus}
+                                                onBlur={FocusOut}
+                                                InputProps={{
+                                                    endAdornment: (
+                                                        <InputAdornment position='start'>
+                                                            <Typography
+                                                                style={{
+                                                                    color:
+                                                                        focus &&
+                                                                        '#3a8dff',
+                                                                    fontSize:
+                                                                        'smaller',
+                                                                }}
+                                                            >
+                                                                Forgot?
+                                                            </Typography>
+                                                        </InputAdornment>
+                                                    ),
+                                                }}
                                             />
                                             <FormHelperText>
                                                 {/* {formErrorMessage.passwordLength} */}
