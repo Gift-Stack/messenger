@@ -1,83 +1,182 @@
-import React from "react";
-import { Redirect, useHistory } from "react-router-dom";
-import { connect } from "react-redux";
+import React from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 import {
-  Grid,
-  Box,
-  Typography,
-  Button,
-  FormControl,
-  TextField,
-} from "@material-ui/core";
-import { login } from "./store/utils/thunkCreators";
+    Grid,
+    Box,
+    Paper,
+    Button,
+    FormControl,
+    TextField,
+    FormHelperText,
+    Typography,
+} from '@material-ui/core';
+import { login } from './store/utils/thunkCreators';
 
-const Login = (props) => {
-  const history = useHistory();
-  const { user, login } = props;
+import Bubble from './assets/bubble.svg';
+import styles from './styles/signup/signup.module.css';
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    const username = event.target.username.value;
-    const password = event.target.password.value;
+const Login = props => {
+    const history = useHistory();
+    const { user, login } = props;
 
-    await login({ username, password });
-  };
+    const handleLogin = async event => {
+        event.preventDefault();
+        const username = event.target.username.value;
+        const password = event.target.password.value;
 
-  if (user.id) {
-    return <Redirect to="/home" />;
-  }
+        await login({ username, password });
+    };
 
-  return (
-    <Grid container justify="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to register?</Typography>
-          <Button onClick={() => history.push("/register")}>Register</Button>
-        </Grid>
-        <form onSubmit={handleLogin}>
-          <Grid>
-            <Grid>
-              <FormControl margin="normal" required>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                />
-              </FormControl>
-            </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
-            <Grid>
-              <Button type="submit" variant="contained" size="large">
-                Login
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Box>
-    </Grid>
-  );
+    if (user.id) {
+        return <Redirect to='/home' />;
+    }
+
+    return (
+        <Box className={styles.root}>
+            <Paper className={styles.paper}>
+                <Grid container spacing={0}>
+                    <Grid item xs={5} container className={styles.bg_image}>
+                        <Grid
+                            item
+                            container
+                            direction='column'
+                            justifyContent='center'
+                            alignItems='center'
+                        >
+                            <Box position='absolute' top={160}>
+                                <img src={Bubble} alt='' />
+                            </Box>
+                            <Typography
+                                variant='h5'
+                                align='center'
+                                style={{ maxWidth: '55%', color: '#fff' }}
+                            >
+                                Converse with anyone with any language
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        item
+                        xs={7}
+                        sm
+                        container
+                        alignItems='center'
+                        justifyContent='center'
+                    >
+                        <div style={{ width: '100%', maxHeight: '100vh' }}>
+                            <Box
+                                position='absolute'
+                                top={0}
+                                right={0}
+                                mx={5}
+                                my={3}
+                            >
+                                <Grid
+                                    item
+                                    container
+                                    justifyContent='flex-end'
+                                    alignItems='center'
+                                    mr={2}
+                                >
+                                    <p
+                                        style={{
+                                            marginRight: 25,
+                                            color: '#aaa',
+                                        }}
+                                    >
+                                        Do you have an account?
+                                    </p>
+                                    <Button
+                                        variant='contained'
+                                        size='large'
+                                        className={styles.button}
+                                        onClick={() =>
+                                            history.push('/register')
+                                        }
+                                    >
+                                        Create account
+                                    </Button>
+                                </Grid>
+                            </Box>
+                            <Grid item container justifyContent='center'>
+                                <form
+                                    noValidate
+                                    autoComplete='off'
+                                    onSubmit={handleLogin}
+                                >
+                                    <Grid item container direction='column'>
+                                        <h2 style={{ textAlign: 'left' }}>
+                                            Welcome back!
+                                        </h2>
+                                        <FormControl>
+                                            <TextField
+                                                id='standard-basic'
+                                                label='Username'
+                                                aria-label='username'
+                                                type='text'
+                                                name='username'
+                                                className={
+                                                    styles.input +
+                                                    ' ' +
+                                                    styles.input_firstchild
+                                                }
+                                            />
+                                            <FormHelperText>
+                                                {/* {formErrorMessage.emailIsRequired} */}
+                                            </FormHelperText>
+                                        </FormControl>
+                                        <FormControl>
+                                            <TextField
+                                                id='standard-basic'
+                                                aria-label='password'
+                                                label='Password'
+                                                type='password'
+                                                inputProps={{ minLength: 6 }}
+                                                name='password'
+                                                // required
+                                                className={styles.input}
+                                            />
+                                            <FormHelperText>
+                                                {/* {formErrorMessage.passwordLength} */}
+                                            </FormHelperText>
+                                        </FormControl>
+                                        <Box
+                                            display='flex'
+                                            justifyContent='center'
+                                        >
+                                            <Button
+                                                type='submit'
+                                                variant='contained'
+                                                size='large'
+                                                className={styles.authBtn}
+                                            >
+                                                Login
+                                            </Button>
+                                        </Box>
+                                    </Grid>
+                                </form>
+                            </Grid>
+                        </div>
+                    </Grid>
+                </Grid>
+            </Paper>
+        </Box>
+    );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
+const mapStateToProps = state => {
+    return {
+        user: state.user,
+    };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    login: (credentials) => {
-      dispatch(login(credentials));
-    },
-  };
+const mapDispatchToProps = dispatch => {
+    return {
+        login: credentials => {
+            dispatch(login(credentials));
+        },
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

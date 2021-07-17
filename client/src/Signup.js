@@ -1,124 +1,244 @@
-import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { useState } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 import {
-  Grid,
-  Box,
-  Typography,
-  Button,
-  FormControl,
-  TextField,
-  FormHelperText,
-} from "@material-ui/core";
-import { register } from "./store/utils/thunkCreators";
+    Grid,
+    Box,
+    Paper,
+    Button,
+    Typography,
+    FormControl,
+    TextField,
+    FormHelperText,
+} from '@material-ui/core';
+import { register } from './store/utils/thunkCreators';
 
-const Login = (props) => {
-  const history = useHistory();
-  const { user, register } = props;
-  const [formErrorMessage, setFormErrorMessage] = useState({});
+import Bubble from './assets/bubble.svg';
+import styles from './styles/signup/signup.module.css';
 
-  const handleRegister = async (event) => {
-    event.preventDefault();
-    const username = event.target.username.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    const confirmPassword = event.target.confirmPassword.value;
+const Login = props => {
+    const history = useHistory();
+    const { user, register } = props;
+    const [formErrorMessage, setFormErrorMessage] = useState({});
 
-    if (password !== confirmPassword) {
-      setFormErrorMessage({ confirmPassword: "Passwords must match" });
-      return;
+    const handleRegister = async event => {
+        event.preventDefault();
+        const username = event.target.username.value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+
+        if (username.length === 0) {
+            setFormErrorMessage({
+                usernameIsRequired: 'Username is required',
+            });
+            setTimeout(
+                () =>
+                    setFormErrorMessage({
+                        ...formErrorMessage,
+                        usernameIsRequired: '',
+                    }),
+                5000,
+            );
+            return;
+        }
+        if (email.length === 0) {
+            setFormErrorMessage({
+                ...formErrorMessage,
+                emailIsRequired: 'E-mail is required',
+            });
+            setTimeout(
+                () =>
+                    setFormErrorMessage({
+                        ...formErrorMessage,
+                        emailIsRequired: '',
+                    }),
+                5000,
+            );
+            return;
+        }
+        if (password.length < 6) {
+            setFormErrorMessage({
+                passwordLength: 'Password must be at least 6 characters',
+            });
+            setTimeout(
+                () =>
+                    setFormErrorMessage({
+                        ...formErrorMessage,
+                        passwordLength: '',
+                    }),
+                5000,
+            );
+            return;
+        }
+
+        await register({ username, email, password });
+    };
+
+    if (user.id) {
+        return <Redirect to='/home' />;
     }
 
-    await register({ username, email, password });
-  };
-
-  if (user.id) {
-    return <Redirect to="/home" />;
-  }
-
-  return (
-    <Grid container justify="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to log in?</Typography>
-          <Button onClick={() => history.push("/login")}>Login</Button>
-        </Grid>
-        <form onSubmit={handleRegister}>
-          <Grid>
-            <Grid>
-              <FormControl>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                  required
-                />
-              </FormControl>
-            </Grid>
-            <Grid>
-              <FormControl>
-                <TextField
-                  label="E-mail address"
-                  aria-label="e-mail address"
-                  type="email"
-                  name="email"
-                  required
-                />
-              </FormControl>
-            </Grid>
-            <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
-                <TextField
-                  aria-label="password"
-                  label="Password"
-                  type="password"
-                  inputProps={{ minLength: 6 }}
-                  name="password"
-                  required
-                />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
-              </FormControl>
-            </Grid>
-            <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
-                <TextField
-                  label="Confirm Password"
-                  aria-label="confirm password"
-                  type="password"
-                  inputProps={{ minLength: 6 }}
-                  name="confirmPassword"
-                  required
-                />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
-              </FormControl>
-            </Grid>
-            <Button type="submit" variant="contained" size="large">
-              Create
-            </Button>
-          </Grid>
-        </form>
-      </Box>
-    </Grid>
-  );
+    return (
+        <Box className={styles.root}>
+            <Paper className={styles.paper}>
+                <Grid container spacing={0}>
+                    <Grid item xs={5} container className={styles.bg_image}>
+                        <Grid
+                            item
+                            container
+                            direction='column'
+                            justifyContent='center'
+                            alignItems='center'
+                        >
+                            <Box position='absolute' top={160}>
+                                <img src={Bubble} alt='' />
+                            </Box>
+                            <Typography
+                                variant='h5'
+                                align='center'
+                                style={{ maxWidth: '55%', color: '#fff' }}
+                            >
+                                Converse with anyone with any language
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        item
+                        xs={7}
+                        sm
+                        container
+                        alignItems='center'
+                        justifyContent='center'
+                    >
+                        <div style={{ width: '100%', maxHeight: '100vh' }}>
+                            <Box
+                                position='absolute'
+                                top={0}
+                                right={0}
+                                mx={5}
+                                my={3}
+                            >
+                                <Grid
+                                    item
+                                    container
+                                    justifyContent='flex-end'
+                                    alignItems='center'
+                                    mr={2}
+                                >
+                                    <p
+                                        style={{
+                                            marginRight: 25,
+                                            color: '#aaa',
+                                        }}
+                                    >
+                                        Already have an account?
+                                    </p>
+                                    <Button
+                                        variant='contained'
+                                        size='large'
+                                        className={styles.button}
+                                        onClick={() => history.push('/login')}
+                                    >
+                                        Login
+                                    </Button>
+                                </Grid>
+                            </Box>
+                            <Grid item container justifyContent='center'>
+                                <form
+                                    noValidate
+                                    autoComplete='off'
+                                    onSubmit={handleRegister}
+                                >
+                                    <Grid item container direction='column'>
+                                        <h2 style={{ textAlign: 'left' }}>
+                                            Create an account.
+                                        </h2>
+                                        <FormControl>
+                                            <TextField
+                                                id='standard-basic'
+                                                label='Username'
+                                                aria-label='username'
+                                                type='text'
+                                                name='username'
+                                                className={
+                                                    styles.input +
+                                                    ' ' +
+                                                    styles.input_firstchild
+                                                }
+                                            />
+                                            <FormHelperText>
+                                                {
+                                                    formErrorMessage.usernameIsRequired
+                                                }
+                                            </FormHelperText>
+                                        </FormControl>
+                                        <FormControl>
+                                            <TextField
+                                                id='standard-basic'
+                                                label='E-mail address'
+                                                aria-label='e-mail address'
+                                                type='email'
+                                                name='email'
+                                                className={styles.input}
+                                            />
+                                            <FormHelperText>
+                                                {
+                                                    formErrorMessage.emailIsRequired
+                                                }
+                                            </FormHelperText>
+                                        </FormControl>
+                                        <FormControl>
+                                            <TextField
+                                                id='standard-basic'
+                                                aria-label='password'
+                                                label='Password'
+                                                type='password'
+                                                inputProps={{ minLength: 6 }}
+                                                name='password'
+                                                className={styles.input}
+                                            />
+                                            <FormHelperText>
+                                                {
+                                                    formErrorMessage.passwordLength
+                                                }
+                                            </FormHelperText>
+                                        </FormControl>
+                                        <Box
+                                            display='flex'
+                                            justifyContent='center'
+                                        >
+                                            <Button
+                                                type='submit'
+                                                variant='contained'
+                                                size='large'
+                                                className={styles.authBtn}
+                                            >
+                                                Create
+                                            </Button>
+                                        </Box>
+                                    </Grid>
+                                </form>
+                            </Grid>
+                        </div>
+                    </Grid>
+                </Grid>
+            </Paper>
+        </Box>
+    );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
+const mapStateToProps = state => {
+    return {
+        user: state.user,
+    };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    register: (credentials) => {
-      dispatch(register(credentials));
-    },
-  };
+const mapDispatchToProps = dispatch => {
+    return {
+        register: credentials => {
+            dispatch(register(credentials));
+        },
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

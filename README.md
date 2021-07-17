@@ -4,7 +4,8 @@ A one-to-one realtime chat app.
 
 ## Initial Setup
 
-Create the PostgreSQL database (these instructions may need to be adapted for your operating system):
+Create the PostgreSQL database (these instructions may need to be adapted for
+your operating system):
 
 ```
 psql
@@ -12,9 +13,12 @@ CREATE DATABASE messenger;
 \q
 ```
 
-Update db.js to connect with your local PostgreSQL set up. The [Sequelize documentation](https://sequelize.org/master/manual/getting-started.html) can help with this.
+Update db.js to connect with your local PostgreSQL set up. The
+[Sequelize documentation](https://sequelize.org/master/manual/getting-started.html)
+can help with this.
 
-Create a .env file in the server directory and add your session secret (this can be any string):
+Create a .env file in the server directory and add your session secret (this can
+be any string):
 
 ```
 SESSION_SECRET = "your session secret"
