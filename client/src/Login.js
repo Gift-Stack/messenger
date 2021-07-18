@@ -12,6 +12,8 @@ import {
     FormHelperText,
     Typography,
 } from '@material-ui/core';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 import { login } from './store/utils/thunkCreators';
 
 import Bubble from './assets/bubble.svg';

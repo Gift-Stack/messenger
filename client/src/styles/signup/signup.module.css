@@ -35,7 +35,8 @@
     padding: 15px 30px !important;
     color: #3a8dff !important;
     background: #fff !important;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: 0px 2px 6px rgba(74, 106, 149, 0.2);
+    filter: drop-shadow(0px 2px 6px rgba(74, 106, 149, 0.2));
 }
 .authBtn {
     padding: 15px 30px !important;
