@@ -10,6 +10,13 @@
     height: 100vh;
 }
 
+.bubble {
+    position: absolute;
+}
+.bg_text {
+    max-width: 55%;
+}
+
 /*  */
 .root {
     flex-grow: 1;
@@ -30,6 +37,17 @@
     object-fit: cover;
     object-position: 0% 0%;
 }
+
+.right {
+    max-height: 100vh;
+}
+.account {
+    margin: 24px 30px;
+}
+.account_text {
+    margin-right: 25px;
+}
+
 .button {
     width: 170px !important ;
     padding: 15px 30px !important;
@@ -42,7 +60,7 @@
     padding: 15px 30px !important;
     color: #fff !important;
     background: #3a8dff !important;
-    width: 30%;
+    width: 170px;
     margin-top: 50px !important;
 }
 
@@ -53,11 +71,60 @@
 .input_firstchild {
     margin-top: 2px !important;
 }
-.input:focus {
+.login {
+    padding: inherit;
 }
-.forgotPassword {
-    color: #3a8dff !important;
+
+@media only screen and (max-width: 1010px) {
+    .bg_text {
+        max-width: 70%;
+    }
 }
-.forgotPassword:focus {
-    color: #3a8dff !important;
+@media only screen and (max-width: 600px) {
+    .bg_image {
+        height: 60vh;
+    }
+    .bubble {
+        position: relative;
+    }
+    .bg_text {
+        max-width: 75%;
+    }
+    .right {
+        min-height: 100vh !important;
+        /* margin-bottom: 50px; */
+    }
+    .account {
+        /* margin: 24px 10px; */
+        margin: 10px 15px !important;
+    }
+    .account_text {
+        margin-right: 10px;
+    }
+    .button {
+        font-size: small;
+        width: auto !important;
+        padding: 10px 15px !important;
+    }
+    .login {
+        padding: 10px 50px !important;
+    }
+    .input {
+        width: 80vw;
+    }
+}
+
+@media only screen and (max-width: 345px) {
+    .account {
+        margin: 10px 15px !important;
+    }
+    .account_text {
+        font-size: smaller;
+    }
+    .bg_text {
+        font-size: 20px !important;
+    }
+    .login {
+        padding: 10px 45px !important;
+    }
 }

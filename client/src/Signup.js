@@ -82,7 +82,13 @@ const Login = props => {
         <Box className={styles.root}>
             <Paper className={styles.paper}>
                 <Grid container spacing={0}>
-                    <Grid item xs={5} container className={styles.bg_image}>
+                    <Grid
+                        item
+                        xs={12}
+                        sm={5}
+                        container
+                        className={styles.bg_image}
+                    >
                         <Grid
                             item
                             container
@@ -90,13 +96,18 @@ const Login = props => {
                             justifyContent='center'
                             alignItems='center'
                         >
-                            <Box position='absolute' top={'calc(50vh - 20%)'}>
-                                <img src={Bubble} alt='' />
+                            <Box className='bubble' top={'calc(50vh - 20%)'}>
+                                <img
+                                    src={Bubble}
+                                    alt='Bubble'
+                                    className='bubble_img'
+                                />
                             </Box>
                             <Typography
                                 variant='h5'
                                 align='center'
-                                style={{ maxWidth: '55%', color: '#fff' }}
+                                className={styles.bg_text}
+                                style={{ color: '#fff' }}
                             >
                                 Converse with anyone with any language
                             </Typography>
@@ -104,19 +115,18 @@ const Login = props => {
                     </Grid>
                     <Grid
                         item
-                        xs={7}
-                        sm
+                        xs={12}
+                        sm={7}
                         container
                         alignItems='center'
                         justifyContent='center'
                     >
-                        <div style={{ width: '100%', maxHeight: '100vh' }}>
+                        <div className={styles.right} style={{ width: '100%' }}>
                             <Box
+                                className={styles.account}
                                 position='absolute'
                                 top={0}
                                 right={0}
-                                mx={5}
-                                my={3}
                             >
                                 <Grid
                                     item
@@ -126,17 +136,17 @@ const Login = props => {
                                     mr={2}
                                 >
                                     <p
-                                        style={{
-                                            marginRight: 25,
-                                            color: '#aaa',
-                                        }}
+                                        className={styles.account_text}
+                                        style={{ color: '#aaa' }}
                                     >
                                         Already have an account?
                                     </p>
                                     <Button
                                         variant='contained'
                                         size='large'
-                                        className={styles.button}
+                                        className={
+                                            styles.button + ' ' + styles.login
+                                        }
                                         onClick={() => history.push('/login')}
                                     >
                                         Login

@@ -12,6 +12,7 @@ import {
     FormHelperText,
     Typography,
 } from '@material-ui/core';
+import { useTheme } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import { login } from './store/utils/thunkCreators';
@@ -23,6 +24,10 @@ const Login = props => {
     const [focus, setFocus] = React.useState(false);
     const history = useHistory();
     const { user, login } = props;
+
+    const theme = useTheme();
+
+    // const mobileView = useMediaQuery(theme.breakpoints.down('600px'));
 
     const handleLogin = async event => {
         event.preventDefault();
@@ -47,7 +52,13 @@ const Login = props => {
         <Box className={styles.root}>
             <Paper className={styles.paper}>
                 <Grid container spacing={0}>
-                    <Grid item xs={5} container className={styles.bg_image}>
+                    <Grid
+                        item
+                        xs={12}
+                        sm={5}
+                        container
+                        className={styles.bg_image}
+                    >
                         <Grid
                             item
                             container
@@ -55,13 +66,16 @@ const Login = props => {
                             justifyContent='center'
                             alignItems='center'
                         >
-                            <Box position='absolute' top={'calc(50vh - 20%)'}>
-                                <img src={Bubble} alt='' />
+                            <Box className='bubble' top={'calc(50vh - 20%)'}>
+                                <img src={Bubble} alt='Bubble' />
                             </Box>
                             <Typography
                                 variant='h5'
                                 align='center'
-                                style={{ maxWidth: '55%', color: '#fff' }}
+                                className={styles.bg_text}
+                                style={{
+                                    color: '#fff',
+                                }}
                             >
                                 Converse with anyone with any language
                             </Typography>
@@ -69,19 +83,18 @@ const Login = props => {
                     </Grid>
                     <Grid
                         item
-                        xs={7}
-                        sm
+                        xs={12}
+                        sm={7}
                         container
                         alignItems='center'
                         justifyContent='center'
                     >
-                        <div style={{ width: '100%', maxHeight: '100vh' }}>
+                        <div className={styles.right} style={{ width: '100%' }}>
                             <Box
                                 position='absolute'
+                                className={styles.account}
                                 top={0}
                                 right={0}
-                                mx={5}
-                                my={3}
                             >
                                 <Grid
                                     item
@@ -91,8 +104,8 @@ const Login = props => {
                                     mr={2}
                                 >
                                     <p
+                                        className={styles.account_text}
                                         style={{
-                                            marginRight: 25,
                                             color: '#aaa',
                                         }}
                                     >

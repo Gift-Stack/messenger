@@ -77,7 +77,7 @@ export const fetchConversations = () => async dispatch => {
     try {
         const { data } = await axios.get('/api/conversations');
         dispatch(gotConversations(data));
-        console.log(data);
+        // console.log(data);
     } catch (error) {
         console.error(error);
     }
