@@ -12,8 +12,6 @@ import {
     FormHelperText,
     Typography,
 } from '@material-ui/core';
-import { useTheme } from '@material-ui/core';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import { login } from './store/utils/thunkCreators';
 
@@ -25,9 +23,6 @@ const Login = props => {
     const history = useHistory();
     const { user, login } = props;
 
-    const theme = useTheme();
-
-    // const mobileView = useMediaQuery(theme.breakpoints.down('600px'));
 
     const handleLogin = async event => {
         event.preventDefault();
@@ -151,7 +146,6 @@ const Login = props => {
                                                 }
                                             />
                                             <FormHelperText>
-                                                {/* {formErrorMessage.emailIsRequired} */}
                                             </FormHelperText>
                                         </FormControl>
                                         <FormControl>
@@ -184,7 +178,6 @@ const Login = props => {
                                                 }}
                                             />
                                             <FormHelperText>
-                                                {/* {formErrorMessage.passwordLength} */}
                                             </FormHelperText>
                                         </FormControl>
                                         <Box
