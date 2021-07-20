@@ -9,7 +9,6 @@ import {
     FormControl,
     TextField,
     InputAdornment,
-    FormHelperText,
     Typography,
 } from '@material-ui/core';
 
@@ -57,7 +56,7 @@ const Login = props => {
                             justifyContent='center'
                             alignItems='center'
                         >
-                            <Box className='bubble' top={'calc(50vh - 20%)'}>
+                            <Box className='bubble'>
                                 <img src={Bubble} alt='Bubble' />
                             </Box>
                             <Typography
@@ -80,7 +79,7 @@ const Login = props => {
                         alignItems='center'
                         justifyContent='center'
                     >
-                        <div className={styles.right} style={{ width: '100%' }}>
+                        <div className={styles.right}>
                             <Box
                                 position='absolute'
                                 className={styles.account}
@@ -109,10 +108,6 @@ const Login = props => {
                                         onClick={() =>
                                             history.push('/register')
                                         }
-                                        style={{
-                                            paddingTop: 15,
-                                            paddingBottom: 15,
-                                        }}
                                     >
                                         Create account
                                     </Button>
@@ -141,7 +136,6 @@ const Login = props => {
                                                     styles.input_firstchild
                                                 }
                                             />
-                                            <FormHelperText></FormHelperText>
                                         </FormControl>
                                         <FormControl>
                                             <TextField
@@ -172,7 +166,6 @@ const Login = props => {
                                                     ),
                                                 }}
                                             />
-                                            <FormHelperText></FormHelperText>
                                         </FormControl>
                                         <Box
                                             display='flex'

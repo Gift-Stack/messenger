@@ -12,6 +12,7 @@
 
 .bubble {
     position: absolute;
+    top: calc(50vh - 20%);
 }
 .bg_text {
     max-width: 55%;
@@ -38,6 +39,7 @@
 
 .right {
     max-height: 100vh;
+    width: 100%;
 }
 .account {
     margin: 24px 30px;
@@ -78,16 +80,16 @@
         max-width: 70%;
     }
 }
-@media only screen and (max-width:700px) {
+@media only screen and (max-width: 700px) {
     .bg_text {
         max-width: 80%;
     }
-    .account_text{
+    .account_text {
         font-size: 12px !important;
     }
 }
 @media only screen and (max-width: 630px) {
-    .account_text{
+    .account_text {
         margin-right: 15px !important;
     }
 }

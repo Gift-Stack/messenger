@@ -96,7 +96,7 @@ const Login = props => {
                             justifyContent='center'
                             alignItems='center'
                         >
-                            <Box className='bubble' top={'calc(50vh - 20%)'}>
+                            <Box className='bubble'>
                                 <img
                                     src={Bubble}
                                     alt='Bubble'
@@ -121,7 +121,7 @@ const Login = props => {
                         alignItems='center'
                         justifyContent='center'
                     >
-                        <div className={styles.right} style={{ width: '100%' }}>
+                        <div className={styles.right}>
                             <Box
                                 className={styles.account}
                                 position='absolute'
