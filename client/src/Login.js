@@ -23,7 +23,6 @@ const Login = props => {
     const history = useHistory();
     const { user, login } = props;
 
-
     const handleLogin = async event => {
         event.preventDefault();
         const username = event.target.username.value;
@@ -36,11 +35,8 @@ const Login = props => {
         return <Redirect to='/home' />;
     }
 
-    const Focus = e => {
-        setFocus(true);
-    };
-    const FocusOut = e => {
-        setFocus(false);
+    const toggleFocus = () => {
+        setFocus(prev => !prev);
     };
 
     return (
@@ -145,8 +141,7 @@ const Login = props => {
                                                     styles.input_firstchild
                                                 }
                                             />
-                                            <FormHelperText>
-                                            </FormHelperText>
+                                            <FormHelperText></FormHelperText>
                                         </FormControl>
                                         <FormControl>
                                             <TextField
@@ -157,8 +152,8 @@ const Login = props => {
                                                 inputProps={{ minLength: 6 }}
                                                 name='password'
                                                 className={styles.input}
-                                                onFocus={Focus}
-                                                onBlur={FocusOut}
+                                                onFocus={toggleFocus}
+                                                onBlur={toggleFocus}
                                                 InputProps={{
                                                     endAdornment: (
                                                         <InputAdornment position='start'>
@@ -177,8 +172,7 @@ const Login = props => {
                                                     ),
                                                 }}
                                             />
-                                            <FormHelperText>
-                                            </FormHelperText>
+                                            <FormHelperText></FormHelperText>
                                         </FormControl>
                                         <Box
                                             display='flex'
