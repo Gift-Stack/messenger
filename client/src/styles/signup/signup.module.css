@@ -17,10 +17,8 @@
     max-width: 55%;
 }
 
-/*  */
 .root {
     flex-grow: 1;
-    /* overflow-y: hidden; */
 }
 .paper {
     margin: auto;
