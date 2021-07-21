@@ -25,13 +25,13 @@ const useStyles = makeStyles(theme => ({
     right: {
         maxHeight: '100vh',
         width: '100%',
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down(600)]: {
             minHeight: '100vh',
         },
     },
     account: {
         margin: '24px 30px',
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down(600)]: {
             margin: '10px 15px',
         },
     },
@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down(700)]: {
             fontSize: 12,
         },
-        [theme.breakpoints.down(630, 'sm')]: {
+        [theme.breakpoints.down(630)]: {
             fontSize: 15,
         },
         [theme.breakpoints.down('sm')]: {
@@ -77,7 +77,7 @@ const useStyles = makeStyles(theme => ({
     input: {
         width: 'calc((100vw / 2) - 80px)',
         marginTop: '40px',
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down(600)]: {
             width: '80vw',
         },
     },
@@ -206,9 +206,7 @@ const Login = props => {
                                     onSubmit={handleRegister}
                                 >
                                     <Grid item container direction='column'>
-                                        <h2 style={{ textAlign: 'left' }}>
-                                            Create an account.
-                                        </h2>
+                                        <h2 align='left'>Create an account.</h2>
                                         <FormControl>
                                             <TextField
                                                 id='standard-basic'
