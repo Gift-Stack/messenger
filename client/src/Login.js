@@ -13,19 +13,11 @@ import {
 } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/styles';
-import { createTheme } from '@material-ui/core';
 import { login } from './store/utils/thunkCreators';
 
 import Left from './components/Authentication/Left';
+import { theme } from './themes/theme';
 
-const theme = createTheme({
-    breakpoints: {
-        values: {
-            tablet: 600,
-            laptop: 1024,
-        },
-    },
-});
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -34,39 +26,38 @@ const useStyles = makeStyles(theme => ({
         margin: 'auto',
     },
     right: {
-        maxHeight: '100vh',
         width: '100%',
-        [theme.breakpoints.down(600)]: {
+        [theme.breakpoints.down('sm')]: {
             minHeight: '100vh',
         },
     },
     account: {
-        margin: '24px 30px',
-        [theme.breakpoints.down(600)]: {
-            margin: '10px 15px',
+        margin: theme.spacing(12, 15),
+        [theme.breakpoints.down('sm')]: {
+            margin: theme.spacing(5, 7.5),
         },
     },
-    account_text: {
-        marginRight: '25px',
-        color: '#aaa',
+    accountText: {
+        marginRight: theme.spacing(12.5),
+        color: theme.palette.secondary.main,
 
-        [theme.breakpoints.down(700)]: {
+        [theme.breakpoints.down('md')]: {
             fontSize: 12,
         },
-        [theme.breakpoints.down(630)]: {
+        [theme.breakpoints.down('msm')]: {
             fontSize: 15,
         },
-        [theme.breakpoints.down(600)]: {
-            marginRight: '10px',
+        [theme.breakpoints.down('sm')]: {
+            marginRight: theme.spacing(5),
         },
-        [theme.breakpoints.down(345)]: {
+        [theme.breakpoints.down('xs')]: {
             fontSize: 'smaller',
         },
     },
     button: {
         width: '170px',
-        padding: '15px 30px',
-        color: '#3a8dff',
+        padding: theme.spacing(7.5, 15),
+        color: theme.palette.primary.main,
         background: '#fff',
         boxShadow: '0px 2px 6px rgba(74, 106, 149, 0.2)',
         filter: 'drop-shadow(0px 2px 6px rgba(74, 106, 149, 0.2))',
@@ -74,33 +65,40 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down('sm')]: {
             fontSize: 'small',
             width: 'auto',
-            padding: '10px 15px',
+            padding: theme.spacing(5, 7.5),
         },
     },
     input: {
         width: 'calc((100vw / 2) - 80px)',
-        marginTop: '40px',
-        [theme.breakpoints.down(600)]: {
+        marginTop: theme.spacing(20),
+        [theme.breakpoints.down('sm')]: {
             width: '80vw',
         },
     },
-    input_firstchild: {
-        marginTop: '2px',
+    inputFirstchild: {
+        width: 'calc((100vw / 2) - 80px)',
+        [theme.breakpoints.down('sm')]: {
+            width: '80vw',
+        },
+        marginTop: theme.spacing(),
     },
     authBtn: {
-        padding: '15px 30px',
+        padding: theme.spacing(7.5, 15),
         color: '#fff',
-        background: '#3a8dff',
+        background: theme.palette.primary.main,
         width: '170px',
-        marginTop: '50px',
+        marginTop: theme.spacing(25),
+    },
+    forgotPassword: {
+        color: theme.palette.primary.main,
+        fontSize: 'smaller',
     },
 }));
 
-const Login = props => {
-    const classes = useStyles();
+const Login = ({ user, login }) => {
+    const classes = useStyles(theme);
     const [focus, setFocus] = React.useState(false);
     const history = useHistory();
-    const { user, login } = props;
 
     const handleLogin = async event => {
         event.preventDefault();
@@ -126,7 +124,7 @@ const Login = props => {
                     <Grid
                         item
                         xs={12}
-                        sm={7}
+                        md={7}
                         container
                         alignItems='center'
                         justifyContent='center'
@@ -145,12 +143,7 @@ const Login = props => {
                                     alignItems='center'
                                     mr={2}
                                 >
-                                    <p
-                                        className={classes.account_text}
-                                        style={{
-                                            color: '#aaa',
-                                        }}
-                                    >
+                                    <p className={classes.accountText}>
                                         Don't have an account?
                                     </p>
                                     <Button
@@ -181,9 +174,7 @@ const Login = props => {
                                                 type='text'
                                                 name='username'
                                                 className={
-                                                    classes.input +
-                                                    ' ' +
-                                                    classes.input_firstchild
+                                                    classes.inputFirstchild
                                                 }
                                             />
                                         </FormControl>
@@ -193,8 +184,8 @@ const Login = props => {
                                                 aria-label='password'
                                                 label='Password'
                                                 type='password'
-                                                inputProps={{ minLength: 6 }}
                                                 name='password'
+                                                inputProps={{ minLength: 6 }}
                                                 className={classes.input}
                                                 onFocus={toggleFocus}
                                                 onBlur={toggleFocus}
@@ -202,13 +193,10 @@ const Login = props => {
                                                     endAdornment: (
                                                         <InputAdornment position='start'>
                                                             <Typography
-                                                                style={{
-                                                                    color:
-                                                                        focus &&
-                                                                        '#3a8dff',
-                                                                    fontSize:
-                                                                        'smaller',
-                                                                }}
+                                                                className={
+                                                                    focus &&
+                                                                    classes.forgotPassword
+                                                                }
                                                             >
                                                                 Forgot?
                                                             </Typography>
