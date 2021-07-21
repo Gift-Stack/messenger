@@ -40,10 +40,10 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.secondary.main,
 
         [theme.breakpoints.down('md')]: {
-            fontSize: 12,
+            fontSize: theme.typography.fontSize - 2,
         },
         [theme.breakpoints.down('msm')]: {
-            fontSize: 15,
+            fontSize: theme.typography.fontSize + 1,
         },
         [theme.breakpoints.down('sm')]: {
             marginRight: theme.spacing(5),
@@ -52,25 +52,11 @@ const useStyles = makeStyles(theme => ({
             fontSize: 'smaller',
         },
     },
-    button: {
-        width: '170px',
-        padding: theme.spacing(7.5, 15),
-        color: theme.palette.primary.main,
-        background: '#fff',
-        boxShadow: '0px 2px 6px rgba(74, 106, 149, 0.2)',
-        filter: 'drop-shadow(0px 2px 6px rgba(74, 106, 149, 0.2))',
-
-        [theme.breakpoints.down('sm')]: {
-            fontSize: 'small',
-            width: 'auto',
-            padding: theme.spacing(5, 7.5),
-        },
-    },
     login: {
-        width: '170px',
+        width: theme.size * 2,
         padding: theme.spacing(7.5, 15),
         color: theme.palette.primary.main,
-        background: '#fff',
+        background: theme.palette.secondary.sub,
         boxShadow: '0px 2px 6px rgba(74, 106, 149, 0.2)',
         filter: 'drop-shadow(0px 2px 6px rgba(74, 106, 149, 0.2))',
         [theme.breakpoints.down('sm')]: {
@@ -98,9 +84,9 @@ const useStyles = makeStyles(theme => ({
     },
     authBtn: {
         padding: theme.spacing(7.5, 15),
-        color: '#fff',
+        color: theme.palette.secondary.sub,
         background: theme.palette.primary.main,
-        width: '170px',
+        width: theme.size * 2,
         marginTop: theme.spacing(25),
     },
 }));
