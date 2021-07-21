@@ -1,56 +1,17 @@
-# Messenger
+# Images for new authentication pages UI
 
-A one-to-one realtime chat app.
+## Login page (desktop view)
 
-## Initial Setup
+<img width="960" alt="login" src="https://user-images.githubusercontent.com/72243506/126498791-d27fa738-0e83-4e50-82d1-abb11e0ac820.PNG">
 
-Create the PostgreSQL database (these instructions may need to be adapted for
-your operating system):
+## Login page (Mobile view)
 
-```
-psql
-CREATE DATABASE messenger;
-\q
-```
+<img width="567" alt="login_resp" src="https://user-images.githubusercontent.com/72243506/126498808-394446f1-7e11-449c-8e37-434d7e963379.PNG">
 
-Update db.js to connect with your local PostgreSQL set up. The
-[Sequelize documentation](https://sequelize.org/master/manual/getting-started.html)
-can help with this.
+## Sign up page (Desktop view)
 
-Create a .env file in the server directory and add your session secret (this can
-be any string):
+<img width="960" alt="signup" src="https://user-images.githubusercontent.com/72243506/126498813-8e2ad01d-179e-497e-b555-d958814f3d46.PNG">
 
-```
-SESSION_SECRET = "your session secret"
-```
+## Sign up page (Mobile view)
 
-In the server folder, install dependencies and then seed the database:
-
-```
-cd server
-npm install
-npm run seed
-```
-
-In the client folder, install dependencies:
-
-```
-cd client
-npm install
-```
-
-### Running the Application Locally
-
-In one terminal, start the front end:
-
-```
-cd client
-npm start
-```
-
-In a separate terminal, start the back end:
-
-```
-cd server
-npm run dev
-```
+<img width="568" alt="signup_resp" src="https://user-images.githubusercontent.com/72243506/126498828-414411e6-bfb1-4389-9847-2ca653a0884c.PNG">
