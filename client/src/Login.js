@@ -13,11 +13,19 @@ import {
 } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core';
 import { login } from './store/utils/thunkCreators';
 
-import styles from './styles/signup/signup.module.css';
 import Left from './components/Authentication/Left';
 
+const theme = createTheme({
+    breakpoints: {
+        values: {
+            tablet: 600,
+            laptop: 1024,
+        },
+    },
+});
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -34,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     },
     account: {
         margin: '24px 30px',
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down(600)]: {
             margin: '10px 15px',
         },
     },
@@ -48,7 +56,7 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down(630)]: {
             fontSize: 15,
         },
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down(600)]: {
             marginRight: '10px',
         },
         [theme.breakpoints.down(345)]: {
@@ -187,7 +195,7 @@ const Login = props => {
                                                 type='password'
                                                 inputProps={{ minLength: 6 }}
                                                 name='password'
-                                                className={styles.input}
+                                                className={classes.input}
                                                 onFocus={toggleFocus}
                                                 onBlur={toggleFocus}
                                                 InputProps={{
