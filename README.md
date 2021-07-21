@@ -6,11 +6,13 @@
 
 ## Login page (Mobile view)
 
+
 <img width="567" alt="login_resp" src="https://user-images.githubusercontent.com/72243506/126498808-394446f1-7e11-449c-8e37-434d7e963379.PNG">
 
 ## Sign up page (Desktop view)
 
 <img width="960" alt="signup" src="https://user-images.githubusercontent.com/72243506/126498813-8e2ad01d-179e-497e-b555-d958814f3d46.PNG">
+
 
 ## Sign up page (Mobile view)
 
