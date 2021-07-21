@@ -6,17 +6,96 @@ import {
     Box,
     Paper,
     Button,
-    Typography,
     FormControl,
     TextField,
     FormHelperText,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import { register } from './store/utils/thunkCreators';
 
-import Bubble from './assets/bubble.svg';
-import styles from './styles/signup/signup.module.css';
+import Left from './components/Authentication/Left';
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        margin: 'auto',
+    },
+    right: {
+        maxHeight: '100vh',
+        width: '100%',
+        [theme.breakpoints.down('sm')]: {
+            minHeight: '100vh',
+        },
+    },
+    account: {
+        margin: '24px 30px',
+        [theme.breakpoints.down('sm')]: {
+            margin: '10px 15px',
+        },
+    },
+    account_text: {
+        marginRight: '25px',
+        color: '#aaa',
+
+        [theme.breakpoints.down(700)]: {
+            fontSize: 12,
+        },
+        [theme.breakpoints.down(630, 'sm')]: {
+            fontSize: 15,
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginRight: '10px',
+        },
+        [theme.breakpoints.down(345)]: {
+            fontSize: 'smaller',
+        },
+    },
+    button: {
+        width: '170px',
+        padding: '15px 30px',
+        color: '#3a8dff',
+        background: '#fff',
+        boxShadow: '0px 2px 6px rgba(74, 106, 149, 0.2)',
+        filter: 'drop-shadow(0px 2px 6px rgba(74, 106, 149, 0.2))',
+
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 'small',
+            width: 'auto',
+            padding: '10px 15px',
+        },
+    },
+    login: {
+        [theme.breakpoints.down('sm')]: {
+            padding: '10px 50px',
+        },
+        [theme.breakpoints.down(345)]: {
+            padding: '10px 45px',
+        },
+    },
+    input: {
+        width: 'calc((100vw / 2) - 80px)',
+        marginTop: '40px',
+        [theme.breakpoints.down('sm')]: {
+            width: '80vw',
+        },
+    },
+    input_firstchild: {
+        marginTop: '2px',
+    },
+    authBtn: {
+        padding: '15px 30px',
+        color: '#fff',
+        background: '#3a8dff',
+        width: '170px',
+        marginTop: '50px',
+    },
+}));
 
 const Login = props => {
+    const classes = useStyles();
+
     const history = useHistory();
     const { user, register } = props;
     const [formErrorMessage, setFormErrorMessage] = useState({});
@@ -79,40 +158,10 @@ const Login = props => {
     }
 
     return (
-        <Box className={styles.root}>
-            <Paper className={styles.paper}>
+        <Box className={classes.root}>
+            <Paper className={classes.paper}>
                 <Grid container spacing={0}>
-                    <Grid
-                        item
-                        xs={12}
-                        sm={5}
-                        container
-                        className={styles.bg_image}
-                    >
-                        <Grid
-                            item
-                            container
-                            direction='column'
-                            justifyContent='center'
-                            alignItems='center'
-                        >
-                            <Box className='bubble'>
-                                <img
-                                    src={Bubble}
-                                    alt='Bubble'
-                                    className='bubble_img'
-                                />
-                            </Box>
-                            <Typography
-                                variant='h5'
-                                align='center'
-                                className={styles.bg_text}
-                                style={{ color: '#fff' }}
-                            >
-                                Converse with anyone with any language
-                            </Typography>
-                        </Grid>
-                    </Grid>
+                    <Left />
                     <Grid
                         item
                         xs={12}
@@ -121,9 +170,9 @@ const Login = props => {
                         alignItems='center'
                         justifyContent='center'
                     >
-                        <div className={styles.right}>
+                        <div className={classes.right}>
                             <Box
-                                className={styles.account}
+                                className={classes.account}
                                 position='absolute'
                                 top={0}
                                 right={0}
@@ -135,17 +184,14 @@ const Login = props => {
                                     alignItems='center'
                                     mr={2}
                                 >
-                                    <p
-                                        className={styles.account_text}
-                                        style={{ color: '#aaa' }}
-                                    >
+                                    <p className={classes.account_text}>
                                         Already have an account?
                                     </p>
                                     <Button
                                         variant='contained'
                                         size='large'
                                         className={
-                                            styles.button + ' ' + styles.login
+                                            classes.button + ' ' + classes.login
                                         }
                                         onClick={() => history.push('/login')}
                                     >
@@ -171,9 +217,9 @@ const Login = props => {
                                                 type='text'
                                                 name='username'
                                                 className={
-                                                    styles.input +
+                                                    classes.input +
                                                     ' ' +
-                                                    styles.input_firstchild
+                                                    classes.input_firstchild
                                                 }
                                             />
                                             <FormHelperText>
@@ -189,7 +235,7 @@ const Login = props => {
                                                 aria-label='e-mail address'
                                                 type='email'
                                                 name='email'
-                                                className={styles.input}
+                                                className={classes.input}
                                             />
                                             <FormHelperText>
                                                 {
@@ -205,7 +251,7 @@ const Login = props => {
                                                 type='password'
                                                 inputProps={{ minLength: 6 }}
                                                 name='password'
-                                                className={styles.input}
+                                                className={classes.input}
                                             />
                                             <FormHelperText>
                                                 {
@@ -221,7 +267,7 @@ const Login = props => {
                                                 type='submit'
                                                 variant='contained'
                                                 size='large'
-                                                className={styles.authBtn}
+                                                className={classes.authBtn}
                                             >
                                                 Create
                                             </Button>

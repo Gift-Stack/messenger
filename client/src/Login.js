@@ -14,8 +14,8 @@ import {
 
 import { login } from './store/utils/thunkCreators';
 
-import Bubble from './assets/bubble.svg';
 import styles from './styles/signup/signup.module.css';
+import Left from './components/Authentication/Left';
 
 const Login = props => {
     const [focus, setFocus] = React.useState(false);
@@ -42,35 +42,7 @@ const Login = props => {
         <Box className={styles.root}>
             <Paper className={styles.paper}>
                 <Grid container spacing={0}>
-                    <Grid
-                        item
-                        xs={12}
-                        sm={5}
-                        container
-                        className={styles.bg_image}
-                    >
-                        <Grid
-                            item
-                            container
-                            direction='column'
-                            justifyContent='center'
-                            alignItems='center'
-                        >
-                            <Box className='bubble'>
-                                <img src={Bubble} alt='Bubble' />
-                            </Box>
-                            <Typography
-                                variant='h5'
-                                align='center'
-                                className={styles.bg_text}
-                                style={{
-                                    color: '#fff',
-                                }}
-                            >
-                                Converse with anyone with any language
-                            </Typography>
-                        </Grid>
-                    </Grid>
+                    <Left />
                     <Grid
                         item
                         xs={12}
